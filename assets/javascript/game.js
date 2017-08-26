@@ -1,8 +1,18 @@
 // Variables
 
-// Word bank
+console.log("variables")
 
-    var computerWords = ["buffy", "vampire", "witch", "monster", "hobbit", "wizard",];
+// Word bank - geeky theme
+
+    var computerWords = ["buffy", 
+    	"vampire", 
+    	"witch", 
+    	"monster", 
+    	"hobbit", 
+    	"wizard",
+    	"robot",
+    	"scientist",
+    	];
 
 // Number of player wins
 
@@ -38,8 +48,6 @@
 
 
 // Functions
-
-$(document).ready(function() {
 // makes the blank spaces
 
 function makeHyphens () {
@@ -47,6 +55,7 @@ function makeHyphens () {
         wordDisplay.push('_');
 }
 
+console.log("post makeHyphen function")
 
 function updateWordDisplay() {
     for (var j = 0; j < currentWord.length; j++) {
@@ -56,9 +65,10 @@ function updateWordDisplay() {
 }
 
 
-// Resets the game, by generating a new computer word and resetting guess variables.
+// Resets the game
 function gameReset() {
-    currentWord = computerWords[Math.floor(Math.random() * currentChoices.length)].toUpperCase();
+	console.log(Math.floor(Math.random() * computerWords.length))
+    currentWord = computerWords[Math.floor(Math.random() * computerWords.length)].toUpperCase();
     guessesLeft = 12;
     incorrectGuesses = [];
     userGuess = '';
@@ -67,31 +77,26 @@ function gameReset() {
 }
 
 // Sets up game for game over
-function gameOver() {
+function nextRound() {
     playerLosses++;
     setTimeout(function () {
-        alert("GAME OVER\nThe correct word was:\n" + currentWord.toUpperCase());
+        alert("Try again, Friend.\nThe correct word was:\n" + currentWord.toUpperCase());
     }, 0);
     gameReset();
 }
 
-
-/* GAME LOGIC */
-
-// Initialize first instance of game
+// When the game starts, everything zeroes out, blanks appear
 gameReset();
-document.querySelector('#playerWins').innerHTML = "" + playerWins;
+document.querySelector('#playerWins').innerHTML = ""+ playerWins;
 document.querySelector('#playerLosses').innerHTML = "" + playerLosses;
 document.querySelector('#guessesLeft').innerHTML = "" + guessesLeft;
 document.querySelector('#wordDisplay').innerHTML = wordDisplay.join(" ");
 
-// Check user guess when the user presses a key.
+// Player picks a letter
 document.onkeyup = function (event) {
-    // Determines which key was pressed.
     userGuess = event.key.toUpperCase();
 
 
-    //
     if (validGuesses.indexOf(userGuess) === -1) {
         alert('Invalid Input')
     }
@@ -100,7 +105,7 @@ document.onkeyup = function (event) {
             updateWordDisplay();
             if (wordDisplay.indexOf('_') === -1) {
                 playerWins++;
-                alert("Aaargh! Good job Matey\n" + currentWord.toUpperCase() + "\nwas correct!");
+                alert("Well done, Geekling!\n" + currentWord.toUpperCase() + "\nis correct!");
                 gameReset();
             }
         }
@@ -109,10 +114,8 @@ document.onkeyup = function (event) {
             if (guessesLeft > 0) {
                 console.log(incorrectGuesses);
                 incorrectGuesses.push(userGuess);
-                numWrong++;
-                hang();
             } else {
-                gameOver();
+                nextRound();
             }
         }
     }
@@ -122,6 +125,4 @@ document.onkeyup = function (event) {
     document.querySelector('#guessesLeft').innerHTML = "" + guessesLeft;
     document.querySelector('#incorrectGuesses').innerHTML = incorrectGuesses.join(" ");
     document.querySelector('#wordDisplay').innerHTML = wordDisplay.join(" ");
-};
-
-});
+}
