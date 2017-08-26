@@ -4,7 +4,7 @@ console.log("variables")
 
 // Word bank - geeky theme
 
-    var computerWords = ["buffy", 
+    var computerWords = [ 
     	"vampire", 
     	"witch", 
     	"monster", 
@@ -12,6 +12,9 @@ console.log("variables")
     	"wizard",
     	"robot",
     	"scientist",
+    	"technology",
+    	"dragon",
+    	"fantasy",
     	];
 
 // Number of player wins
