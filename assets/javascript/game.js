@@ -15,6 +15,11 @@ console.log("variables")
     	"technology",
     	"dragon",
     	"fantasy",
+        "spaceship",
+        "elves",
+        "anime",
+        "heroes",
+        "villians",
     	];
 
 // Number of player wins
